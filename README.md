@@ -8,3 +8,6 @@ just here to learn some typescript and build a fun web app to help me get better
 * node/express
 * planetscaleDB
 * next.js 
+
+# road map 
+add the same stuff but for regexes 
