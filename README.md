@@ -6,5 +6,5 @@ just here to learn some typescript and build a fun web app to help me get better
 # tech stack 
 * typescript 
 * node/express
-* planetscale 
+* planetscaleDB
 * next.js 
