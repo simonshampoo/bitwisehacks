@@ -10,5 +10,5 @@ just here to learn some typescript and build a fun web app to help me get better
 * next.js 
 
 # road map 
-[ ] markdown
-[ ] add regexes 
+[] markdown
+[] add regexes 
