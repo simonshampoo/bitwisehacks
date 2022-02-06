@@ -13,21 +13,57 @@ var bitwiseOps = [
         examples: ["24 << 1 = 12"],
         description: undefined,
         notes: undefined,
+        id: 0,
     },
     {
         title: "check parity with &",
         formal: "a & 1 == (0 || 1)",
         examples: ["21 & 1 // returns 1", "10 & 1 // returns 0"],
-        description: "will return when ",
+        description: "will return 0 when a is even and 1 when a is odd",
         notes: "parity refers to whether a number is even or not",
+        id: 1,
     },
 ];
+var id = 2; //so bad lol
+var addBitwiseOp = function (request, response, next) {
+    var data = request.body;
+    var bitwiseOp = {
+        title: data.title,
+        formal: data.formal,
+        examples: data.examples,
+        description: data.examples ? data.examples : undefined,
+        notes: data.notes ? data.notes : undefined,
+        id: id,
+    };
+    id += 1;
+    bitwiseOps.unshift(bitwiseOp);
+    response.status(200).json(bitwiseOp);
+};
+var deleteBitwiseOp = function (request, response, next) {
+    var idToDelete = request.params.id;
+    bitwiseOps.filter(function (bwo) {
+        bwo.id !== parseInt(idToDelete);
+    });
+    response.status(200).json(bitwiseOps);
+};
 var retrieveBitwiseOps = function (request, response, next) {
     response.status(200).json(bitwiseOps);
 };
+var retrieveSpecificBitwiseOp = function (request, response, next) {
+    try {
+        bitwiseOps.find(function (bwo) {
+            bwo.id === parseInt(request.params.slug);
+        });
+    }
+    catch (e) {
+        console.log(e);
+    }
+};
 app.get("/", retrieveBitwiseOps);
-app.post("/");
+app.get("/:id", retrieveSpecificBitwiseOp);
+app.post("/", addBitwiseOp);
+app.delete("/:id", deleteBitwiseOp);
 app.listen(port, function () {
-    console.log("Timezones by location application is running on port ".concat(port, "."));
+    console.log("Bitwise Hacks is running on port ".concat(port, "."));
 });
 //# sourceMappingURL=index.js.map
