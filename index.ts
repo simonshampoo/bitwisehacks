@@ -2,14 +2,15 @@ import express, { Request, Response, NextFunction } from "express";
 import { v4 as uuidv4 } from "uuid";
 
 const app = express();
+app.use(express.json())
 const port = 3000;
 
 interface BitwiseOperations {
   title: string;
   formal: string;
   examples: string[];
-  description: string | undefined;
-  notes: string | undefined;
+  description: string | null;
+  notes: string | null;
   id: number;
 }
 
@@ -18,8 +19,8 @@ let bitwiseOps: BitwiseOperations[] = [
     title: "division by n with right shift",
     formal: "a << n == floor(a/n)",
     examples: ["24 << 1 = 12"],
-    description: undefined,
-    notes: undefined,
+    description: null,
+    notes: null,
     id: 0,
   },
   {
@@ -39,18 +40,22 @@ const addBitwiseOp = (
   response: Response,
   next: NextFunction
 ) => {
-  const data = request.body;
-  const bitwiseOp: BitwiseOperations = {
-    title: data.title,
-    formal: data.formal,
-    examples: data.examples,
-    description: data.examples ? data.examples : undefined,
-    notes: data.notes ? data.notes : undefined,
-    id: id,
-  };
-  id += 1;
-  bitwiseOps.unshift(bitwiseOp);
-  response.status(200).json(bitwiseOp);
+  // console.log('hello')
+  // const data = request.body
+  // const bitwiseOp: BitwiseOperations = {
+  //   title: data.title,
+  //   formal: data.formal,
+  //   examples: data.examples,
+  //   description: data.description ? data.description : null,
+  //   notes: data.notes ? data.notes : null,
+  //   id: id,
+  // };
+  // id += 1;
+  // bitwiseOps.unshift(bitwiseOp);
+  // console.log(bitwiseOp);
+  // response.status(200)
+  console.log('Got body:', request.body);
+  response.send("Fucking post request successful")
 };
 
 const deleteBitwiseOp = (

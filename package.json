@@ -16,7 +16,8 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "serve": "nodemon app.ts"
+    "start": "tsc && node dist/index.js",
+    "serve": "nodemon index.ts"
   },
   "keywords": [],
   "author": "",

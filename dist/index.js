@@ -11,8 +11,8 @@ var bitwiseOps = [
         title: "division by n with right shift",
         formal: "a << n == floor(a/n)",
         examples: ["24 << 1 = 12"],
-        description: undefined,
-        notes: undefined,
+        description: null,
+        notes: null,
         id: 0,
     },
     {
@@ -27,17 +27,18 @@ var bitwiseOps = [
 var id = 2; //so bad lol
 var addBitwiseOp = function (request, response, next) {
     var data = request.body;
-    var bitwiseOp = {
-        title: data.title,
-        formal: data.formal,
-        examples: data.examples,
-        description: data.examples ? data.examples : undefined,
-        notes: data.notes ? data.notes : undefined,
-        id: id,
-    };
-    id += 1;
-    bitwiseOps.unshift(bitwiseOp);
-    response.status(200).json(bitwiseOp);
+    // const bitwiseOp: BitwiseOperations = {
+    //   title: data.title,
+    //   formal: data.formal,
+    //   examples: data.examples,
+    //   description: data.description ? data.description : null,
+    //   notes: data.notes ? data.notes : null,
+    //   id: id,
+    // };
+    console.log(data);
+    // id += 1;
+    // bitwiseOps.unshift(bitwiseOp);
+    // response.status(200).json(bitwiseOp);
 };
 var deleteBitwiseOp = function (request, response, next) {
     var idToDelete = request.params.id;
